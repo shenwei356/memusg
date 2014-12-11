@@ -70,7 +70,7 @@ signal.signal(signal.SIGINT,lambda signum,frame: os.killpg(p.pid,signum))
 
 if args.write_interval:
     n_interval = int(args.write_interval/args.poll_interval)
-    last_pack = 0
+    last_peak = 0
 
 peak = 0
 n = 0
