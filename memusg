@@ -28,18 +28,18 @@ def human_time(t):
     elif t < 60*60:
         minutes = (t % 3600)//60
         seconds = (t % 60)
-        return "{.0f}m:{:.0f}s".format(minutes,seconds)
+        return "{:.0f}m:{:02.0f}s".format(minutes,seconds)
     elif t < 24*60*60:
-        hours = (t % 24*60*60)//3600
+        hours = (t % (24*60*60))//3600
         minutes = (t % 3600)//60
         seconds = (t % 60)
-        return "{:.0f}h:{:.0f}m:{:.0f}s".format(hours,minutes,seconds)
+        return "{:.0f}h:{:02.0f}m:{:02.0f}s".format(hours,minutes,seconds)
     else:
         days = t//(24*60*60)
-        hours = (t % 24*60*60)//3600
+        hours = (t % (24*60*60))//3600
         minutes = (t % 3600)//60
         seconds = (t % 60)
-        return "{}days {:.0f}h:{:.0f}m:{:.0f}s".format(days,hours,minutes,seconds)
+        return "{}days {:.0f}h:{:02.0f}m:{:02.0f}s".format(days,hours,minutes,seconds)
 
 def human_size(size):
     """Convert integer representing bytes to human readable string"""
