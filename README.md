@@ -5,7 +5,7 @@ Works in both interactive and non-interactive environments.
 Usage:
 
 ```bash
-export PATH=$path_to_memusg
+export PATH=$path_to_memusg:$PATH
 memusg my_command
 ```
 
