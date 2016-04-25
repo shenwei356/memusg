@@ -82,7 +82,7 @@ def human_size(size):
 if args.output_to_file:
     stdout = open(args.output_to_file, "w")
 else:
-    stdout = sys.stdout
+    stdout = sys.stderr
 
 if args.time:
     start_time = time()
@@ -113,12 +113,14 @@ while p.poll() is None:
             last_peak = peak
     sleep(args.poll_interval)
 
+stdout.write("\n")
 if args.time:
     elapsed_time = time() - start_time
     stdout.write("elapsed time: {}\n".format(human_time(
         elapsed_time) if not args.no_humanize else "{:.3f}".format(elapsed_time)))
 stdout.write("peak rss: {}\n".format(
     human_size(peak) if not args.no_humanize else peak))
+stdout.write("\n")
 
 # Return subprocess return code except when returncode is negative, which
 # indicates the subprocess was killed by a signal. Don't know how to get
