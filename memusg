@@ -33,7 +33,7 @@ parser.add_argument(
 parser.add_argument(
     '-H',
     '--no-humanize',
-    help="No humanization of the value of time and memory usage",
+    help="No humanization of the value of time (second) and memory (KB) usage",
     default=False,
     action='store_true')
 parser.add_argument('args', nargs=REMAINDER)
