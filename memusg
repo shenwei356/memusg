@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# https://github.com/drewkett/memusg
+
 import sys
 import os
 import signal
@@ -36,6 +38,11 @@ parser.add_argument(
     help="No humanization of the value of time (second) and memory (KB) usage",
     default=False,
     action='store_true')
+parser.add_argument('-s',
+                    '--shell',
+                    help="execute through shell, useful for multiple cmmands and commands with pipes",
+                    default=False,
+                    action='store_true')
 parser.add_argument('args', nargs=REMAINDER)
 args = parser.parse_args()
 
@@ -88,9 +95,9 @@ if args.time:
     start_time = time()
 
 if sys.version_info >= (3, 0):
-    p = Popen(tuple(args.args), start_new_session=True, shell=True)
+    p = Popen(tuple(args.args), start_new_session=True, shell=args.shell)
 else:
-    p = Popen(tuple(args.args), preexec_fn=os.setsid, shell=True)
+    p = Popen(tuple(args.args), preexec_fn=os.setsid, shell=args.shell)
 
 # Catch interrupt signal and send to subprocesses
 signal.signal(signal.SIGINT, lambda signum, frame: os.killpg(p.pid, signum))

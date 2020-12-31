@@ -6,7 +6,7 @@ Usage:
 
 ```bash
 usage: memusg [-h] [-o OUTPUT_TO_FILE] [-t] [-p POLL_INTERVAL]
-              [-w WRITE_INTERVAL] [-H]
+              [-w WRITE_INTERVAL] [-H] [-s]
               ...
 
 positional arguments:
@@ -25,6 +25,8 @@ optional arguments:
                         stdout while process is running (Disable using 0)
   -H, --no-humanize     No humanization of the value of time (second) and
                         memory (KB) usage
+  -s, --shell           execute through shell, useful for multiple cmmands and
+                        commands with pipes
 ```
 
 ```bash
@@ -35,5 +37,15 @@ memusg my_command
 Example:
 
 ```bash
-memusg sleep 2
+$ memusg -t sleep 2
+
+elapsed time: 2.039s
+peak rss: 664.0 KB
+
+$ memusg -t -s "echo 1 | cat"
+1
+
+elapsed time: 0.110s
+peak rss: 0B
+
 ```
