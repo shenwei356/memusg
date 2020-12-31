@@ -88,9 +88,9 @@ if args.time:
     start_time = time()
 
 if sys.version_info >= (3, 0):
-    p = Popen(tuple(args.args), start_new_session=True)
+    p = Popen(tuple(args.args), start_new_session=True, shell=True)
 else:
-    p = Popen(tuple(args.args), preexec_fn=os.setsid)
+    p = Popen(tuple(args.args), preexec_fn=os.setsid, shell=True)
 
 # Catch interrupt signal and send to subprocesses
 signal.signal(signal.SIGINT, lambda signum, frame: os.killpg(p.pid, signum))
