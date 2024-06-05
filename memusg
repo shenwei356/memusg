@@ -78,8 +78,8 @@ def human_size(size):
     """Convert integer representing bytes to human readable string"""
     size_name = ("KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
     if size:
-        i = int(math.floor(math.log(size, 1024)))
-        p = math.pow(1024, i)
+        i = int(math.floor(math.log(size, 1000)))
+        p = math.pow(1000, i)
         s = round(size / p, 2)
         return '%s %s' % (s, size_name[i])
     else:
